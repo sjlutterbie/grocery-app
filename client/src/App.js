@@ -53,7 +53,9 @@ class App extends Component {
       <div className="container">
         <StoreComponents.StoreTable items={this.state.items}/>
         <CartComponents.CartTable items={this.state.items}/>
-        <WalletComponents.WalletTable money={this.state.money}/>
+        <WalletComponents.WalletTable
+          items={this.state.items}
+          money={this.state.money}/>
       </div>
     );
   }
