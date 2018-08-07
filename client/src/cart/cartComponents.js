@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 
 class CartTable extends React.Component {
     render() {
+        
+        var rows = [];
+        var item = {};
+        
+        for (item of this.props.items) {
+            rows.push(
+                <CartTableRow item={item} key={item.plural} />    
+            );
+        }
+        
         return (
             <div className="CartTableContainer">
                 <table className="CartTable">
@@ -12,10 +22,9 @@ class CartTable extends React.Component {
                             </th>
                         </tr>
                     </thead>
-                    <CartTableRow />
-                    <CartTableRow />
-                    <CartTableRow />
-                    <CartTableRow />
+                    <tbody>
+                        {rows}
+                    </tbody>
                 </table>
             </div>
         );
@@ -30,7 +39,7 @@ class CartTableRow extends React.Component{
                     <button> + </button>
                 </td>
                 <td>
-                    [ItemCartQuantity]
+                    {this.props.item.inCart}
                 </td>
                 <td>
                     <button> - </button>
