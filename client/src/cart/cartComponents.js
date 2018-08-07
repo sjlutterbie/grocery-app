@@ -6,13 +6,14 @@ class CartTable extends React.Component {
     render() {
         
         var rows = [];
-        var item = {};
 
-        for (item of this.props.items) {
+        for (var i in this.props.items) {
             rows.push(
                 <CartTableRow
-                    item={item}
-                    key={item.plural}
+                    itemID={i}
+                    item={this.props.state.items[i]}
+                    state={this.props.state}
+                    key={this.props.items[i].plural}
                     eventHandlers={this.props.eventHandlers}
                 />    
             );
@@ -38,23 +39,23 @@ class CartTable extends React.Component {
     }
 }
 
-class CartTableRow extends React.Component{
-
+class CartTableRow extends React.PureComponent{
+    
     render() {
 
         return (
             <tr className="CartTableRow">
                 <td>
                     <button
-                        onClick={() => this.props.eventHandlers.addToCart(this.props.item)}
+                        onClick={() => this.props.eventHandlers.addToCart(this.props.state,this.props.itemID)}
                     > + </button>
                 </td>
                 <td>
-                    {this.props.item.inCart}
+                    {this.props.state.items[this.props.itemID].inCart}
                 </td>
                 <td>
                     <button
-                        onClick={() => alert('You clicked -')}
+                        onClick={() => this.props.eventHandlers.removeFromCart(this.props.state,this.props.itemID)}
                     > - </button>
                 </td>
             </tr>

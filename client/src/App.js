@@ -17,6 +17,7 @@ import cartActions from './cart/cartActions';
 class App extends Component {
   constructor(props){
     super(props);
+    
     this.state = {
       money: 20,
       items: [
@@ -50,6 +51,9 @@ class App extends Component {
         }
       ]
     };
+    
+    this.state.setState = () => {};
+    
   }
   
   render() {
@@ -59,6 +63,7 @@ class App extends Component {
         <StoreComponents.StoreTable items={this.state.items}/>
         <CartComponents.CartTable
           items={this.state.items}
+          state={this.state}
           eventHandlers={{
             addToCart: cartActions.addToCart,
             removeFromCart: cartActions.removeFromCart
@@ -68,6 +73,9 @@ class App extends Component {
           items={this.state.items}
           money={this.state.money}
         />
+        <div>
+          <button onClick={() => console.log(this.state.items)}>Show state</button>
+        </div>
       </div>
     );
   }
