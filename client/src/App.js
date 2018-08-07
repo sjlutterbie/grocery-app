@@ -8,6 +8,10 @@ import StoreComponents from './store/storeComponents';
 import CartComponents from './cart/cartComponents';
 import WalletComponents from './wallet/walletComponents';
 
+// Import actions
+
+import cartActions from './cart/cartActions';
+
 // Build site structure
 
 class App extends Component {
@@ -49,13 +53,21 @@ class App extends Component {
   }
   
   render() {
+    
     return (
       <div className="container">
         <StoreComponents.StoreTable items={this.state.items}/>
-        <CartComponents.CartTable items={this.state.items}/>
+        <CartComponents.CartTable
+          items={this.state.items}
+          eventHandlers={{
+            addToCart: cartActions.addToCart,
+            removeFromCart: cartActions.removeFromCart
+          }}
+        />
         <WalletComponents.WalletTable
           items={this.state.items}
-          money={this.state.money}/>
+          money={this.state.money}
+        />
       </div>
     );
   }
