@@ -73,11 +73,9 @@ class App extends Component {
             removeFromCart: cartActions.removeFromCart
           }
         )}
-
-        <WalletComponents.WalletTable
-          items={this.state.items}
-          money={this.state.money}
-        />
+        
+        {WalletComponents.WalletTable(this.state)}
+        
         <div>
           <button onClick={() => console.log(this.state.items)}>Show state</button>
         </div>
