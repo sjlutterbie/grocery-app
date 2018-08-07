@@ -2,7 +2,7 @@
 // Add an item to the cart
 var addToCart = function (state,itemID) {
   
-  alert('You tried to add a ' + state.items[itemID].name + ' to your cart!');
+//  alert('You tried to add a ' + state.items[itemID].name + ' to your cart!');
 
 
   const itemsSlice = state.items.slice();
@@ -10,7 +10,8 @@ var addToCart = function (state,itemID) {
     itemsSlice[itemID].onShelf -= 1;
     itemsSlice[itemID].inCart += 1;
     state.setState({items: itemsSlice});
-    
+  
+  console.log("Item: " + state.items[itemID].plural);  
   console.log('On shelf :' + state.items[itemID].onShelf);
   console.log('In cart :' + state.items[itemID].inCart);
   
@@ -19,7 +20,7 @@ var addToCart = function (state,itemID) {
 // Remove an item from the cart
 var removeFromCart = function (state, itemID) {
   
-  alert('You tried to remove a ' + state.items[itemID].name + ' from your cart!');
+//  alert('You tried to remove a ' + state.items[itemID].name + ' from your cart!');
   
   const items = state.items.slice();
     
