@@ -56,13 +56,12 @@ class App extends Component {
     
   }
   
-  
-  
   render() {
     
     return (
       <div className="container">
-        <StoreComponents.StoreTable items={this.state.items}/>
+
+        {StoreComponents.StoreTable(this.state)}
 
         {CartComponents.CartTable(
           // props
