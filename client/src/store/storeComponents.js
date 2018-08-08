@@ -5,9 +5,9 @@ function StoreTable(props) {
     var rows = [];
     var item = {};
     
-    for(item of props.items) {
+    for(item in props.items) {
         rows.push(
-            StoreTableRow(item, item.plural)
+            StoreTableRow(props.items[item])
         );
     }
     
@@ -29,7 +29,7 @@ function StoreTable(props) {
     );
 }
 
-function StoreTableRow(item, key) {
+function StoreTableRow(item) {
     
     var plural = item.plural;
         // Capitalize first letter
@@ -42,7 +42,7 @@ function StoreTableRow(item, key) {
     var onShelf = item.onShelf;
     
     return(
-        <tr className="StoreTableRow" key={key}>
+        <tr className="StoreTableRow" key={item.plural}>
             <td>{plural}</td>
             <td>{price}</td>
             <td>{onShelf}</td>

@@ -8,10 +8,11 @@ function WalletTable(props) {
     
     var moneyRemaining = Projections.moneyRemaining(props.money, cartCost);
     
+
     // Format both values as currency
         cartCost = "$" + cartCost.toFixed(2);
         moneyRemaining = "$" + moneyRemaining.toFixed(2);
-        props.money = "$" + props.money.toFixed(2);
+        var moneyDisplay = "$" + props.money.toFixed(2);
     
     return(
         <div className="WalletContainer">
@@ -24,7 +25,7 @@ function WalletTable(props) {
                 <tbody>
                     <tr>
                         <td>Money:</td>
-                        <td>{props.money}</td>
+                        <td>{moneyDisplay}</td>
                     </tr>
                     <tr>
                         <td>Cost:</td>

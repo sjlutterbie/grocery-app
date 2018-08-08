@@ -20,39 +20,40 @@ class App extends Component {
     
     this.state = {
       money: 20,
-      items: [
-        {
+      items: {
+        apples: {
           name: "apple",
           plural: "apples",
           price: 1,
           onShelf: 10,
           inCart: 0
         },
-        {
+        bananas: {
           name: "banana",
           plural: "bananas",
           price: .5,
           onShelf: 5,
           inCart: 0
         },
-        {
+        celery: {
           name: "celery",
           plural: "celery",
           price: 1.5,
           onShelf: 8,
           inCart: 0
         },
-        {
+        dates: {
           name: "date",
           plural: "dates",
           price: 2,
           onShelf: 12,
           inCart: 0
         }
-      ]
+      }
     };
     
-    this.state.setState = () => {};
+    this.addToCart = cartActions.addToCart.bind(this);
+    this.removeFromCart = cartActions.removeFromCart.bind(this);
     
   }
   
@@ -68,15 +69,15 @@ class App extends Component {
           this.state,
           // eventHandlers
           {
-            addToCart: cartActions.addToCart,
-            removeFromCart: cartActions.removeFromCart
+            addToCart: this.addToCart,
+            removeFromCart: this.removeFromCart,
           }
         )}
         
         {WalletComponents.WalletTable(this.state)}
         
         <div>
-          <button onClick={() => console.log(this.state.items)}>Show state</button>
+          <button onClick={() => console.log(this.state)}>Show state</button>
         </div>
       </div>
     );

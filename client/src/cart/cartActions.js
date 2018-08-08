@@ -1,35 +1,45 @@
 
+import walletProjections from '../wallet/walletProjections';
+
+
 // Add an item to the cart
-var addToCart = function (state,itemID) {
-  
-//  alert('You tried to add a ' + state.items[itemID].name + ' to your cart!');
+var addToCart = function (props,itemID) {
 
-
-  const itemsSlice = state.items.slice();
+  if(!walletProjections.itemAffordable(props, itemID)) {
     
-    itemsSlice[itemID].onShelf -= 1;
-    itemsSlice[itemID].inCart += 1;
-    state.setState({items: itemsSlice});
+    alert("Not enough money in wallet.");
+    return;
+    
+  }
   
-  console.log("Item: " + state.items[itemID].plural);  
-  console.log('On shelf :' + state.items[itemID].onShelf);
-  console.log('In cart :' + state.items[itemID].inCart);
+  // Check inventory, alert and escape on zero
+  if ( props.items[itemID].onShelf == 0 ) {
+    alert("No " + props.items[itemID].plural + " on the shelf.");  
+    return;
+  }
   
+  props.items[itemID].onShelf -= 1;
+  props.items[itemID].inCart += 1;
+
+  this.setState({items: props.items});
+
+
 };
 
 // Remove an item from the cart
-var removeFromCart = function (state, itemID) {
+var removeFromCart = function (props, itemID) {
   
-//  alert('You tried to remove a ' + state.items[itemID].name + ' from your cart!');
+  //Check cart inventory, alert and escape on zero
+  if ( props.items[itemID].inCart == 0 ) {
+    alert("No " + props.items[itemID].plural + " in your cart.");
+    return;
+  }
   
-  const items = state.items.slice();
-    
-    items[itemID].onShelf += 1;
-    items[itemID].inCart -= 1;
-    state.setState({items: items});
-    
-  console.log('On shelf :' + state.items[itemID].onShelf);
-  console.log('In cart :' + state.items[itemID].inCart);
+  props.items[itemID].onShelf += 1;
+  props.items[itemID].inCart -= 1;
+
+  this.setState({items: props.items});
+
   
 };
 
